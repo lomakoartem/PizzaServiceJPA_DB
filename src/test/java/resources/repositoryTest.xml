@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd"
+       profile="dev">
+
+    <bean name="pizzaRepository"
+    class="pizzaservice.repository.pizza.InMemPizzaRepository"
+    init-method="init">
+    <property name="pizzasDB">
+      <list merge="default">
+            <bean class="pizzaservice.domain.pizza.Pizza">
+                <constructor-arg index="0" value="10" />
+                <constructor-arg index="1" value="Pizza from repository" />
+                <constructor-arg index="2" value="2.5" />
+                <constructor-arg index="3" value="SEA"/>
+            </bean>
+      </list>
+    </property>
+</bean>
+
+    <bean id="customer" class="pizzaservice.domain.customer.Customer" >
+        <constructor-arg value="2" />
+        <constructor-arg value="Customer form repository context" />
+    </bean>
+    <bean id="createPizzaBean" class="pizzaservice.service.pizza.SimplePizzaService" />
+
+
+</beans>
